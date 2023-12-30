@@ -3,12 +3,13 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 48;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		2AB07BF789841271ED80EA26 /* Pods_DoughnutUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25D4796441E8F7922FCDAF9A /* Pods_DoughnutUITests.framework */; };
 		4125A143137AD05319B3DEFC /* Pods_Doughnut.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2661E19A57B17099FC4ECCDD /* Pods_Doughnut.framework */; };
+		487DB9ED2B3F8C85009A10B2 /* SwiftWhisper in Frameworks */ = {isa = PBXBuildFile; productRef = 487DB9EC2B3F8C85009A10B2 /* SwiftWhisper */; };
 		5E0288D17E6858855545E02E /* Pods_DoughnutTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BE29F62CFF7B122D5C39998 /* Pods_DoughnutTests.framework */; };
 		6B0233BD27B2CA6500500E28 /* ControlMenuProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B0233BC27B2CA6500500E28 /* ControlMenuProvider.swift */; };
 		6B0605C52788627D00A8A91E /* NSMenu+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B0605C42788627D00A8A91E /* NSMenu+Extensions.swift */; };
@@ -224,6 +225,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4125A143137AD05319B3DEFC /* Pods_Doughnut.framework in Frameworks */,
+				487DB9ED2B3F8C85009A10B2 /* SwiftWhisper in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -246,6 +248,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		487DB9EE2B3F8E42009A10B2 /* Whisper */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Whisper;
+			sourceTree = "<group>";
+		};
 		6B0605BF2788624B00A8A91E /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
@@ -452,6 +461,7 @@
 		838257CC1F759F6F00DB4FD1 /* Doughnut */ = {
 			isa = PBXGroup;
 			children = (
+				487DB9EE2B3F8E42009A10B2 /* Whisper */,
 				83FB4EB61F7BD996001CD842 /* Library */,
 				831EBAD427CC0DA500F212B4 /* Player */,
 				83235BF5200945D900BC356F /* Preference */,
@@ -579,6 +589,9 @@
 			dependencies = (
 			);
 			name = Doughnut;
+			packageProductDependencies = (
+				487DB9EC2B3F8C85009A10B2 /* SwiftWhisper */,
+			);
 			productName = Doughnut;
 			productReference = 838257CA1F759F6F00DB4FD1 /* Doughnut.app */;
 			productType = "com.apple.product-type.application";
@@ -669,6 +682,9 @@
 				Base,
 			);
 			mainGroup = 838257C11F759F6F00DB4FD1;
+			packageReferences = (
+				487DB9EB2B3F8C85009A10B2 /* XCRemoteSwiftPackageReference "SwiftWhisper" */,
+			);
 			productRefGroup = 838257CB1F759F6F00DB4FD1 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -1063,7 +1079,10 @@
 					"TEST=1",
 				);
 				INFOPLIST_FILE = Doughnut/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MARKETING_VERSION = 2.0.1;
 				OTHER_CODE_SIGN_FLAGS = "--deep";
@@ -1088,7 +1107,11 @@
 					"TEST=1",
 				);
 				INFOPLIST_FILE = DoughnutTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				OTHER_SWIFT_FLAGS = "-DTEST";
 				PRODUCT_BUNDLE_IDENTIFIER = cdyer.DoughnutTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1109,7 +1132,11 @@
 					"TEST=1",
 				);
 				INFOPLIST_FILE = DoughnutUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = cdyer.DoughnutUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -1226,7 +1253,8 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 			};
 			name = Release;
 		};
@@ -1243,7 +1271,10 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = Doughnut/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MARKETING_VERSION = 2.0.1;
 				OTHER_CODE_SIGN_FLAGS = "--deep";
@@ -1269,7 +1300,10 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = Doughnut/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MARKETING_VERSION = 2.0.1;
 				OTHER_CODE_SIGN_FLAGS = "--deep";
@@ -1293,7 +1327,11 @@
 					"COCOAPODS=1",
 				);
 				INFOPLIST_FILE = DoughnutTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = cdyer.DoughnutTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -1309,7 +1347,11 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = DoughnutTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = cdyer.DoughnutTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -1328,7 +1370,11 @@
 					"COCOAPODS=1",
 				);
 				INFOPLIST_FILE = DoughnutUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = cdyer.DoughnutUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -1343,7 +1389,11 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = DoughnutUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = cdyer.DoughnutUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -1395,6 +1445,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		487DB9EB2B3F8C85009A10B2 /* XCRemoteSwiftPackageReference "SwiftWhisper" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/exPHAT/SwiftWhisper.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.2.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		487DB9EC2B3F8C85009A10B2 /* SwiftWhisper */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 487DB9EB2B3F8C85009A10B2 /* XCRemoteSwiftPackageReference "SwiftWhisper" */;
+			productName = SwiftWhisper;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 838257C21F759F6F00DB4FD1 /* Project object */;
 }
