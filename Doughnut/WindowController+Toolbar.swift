@@ -26,7 +26,8 @@ private extension NSToolbarItem.Identifier {
   static let doughnutPlayerView  = Self("NSToolbarDoughnutPlayerViewItemIdentifier")
   static let doughnutTaskManager = Self("NSToolbarDoughnutTaskManagerItemIdentifier")
   static let doughnutSearch      = Self("NSToolbarDoughnutSearchItemIdentifier")
-
+  static let doughnutTranscript  = Self("NSToolbarDoughnutTranscriptIdentifier")
+  static let doughnutEpisodeInfo = Self("NSToolbarDoughnutEpisodeInfoIdentifier")
 }
 
 extension WindowController: NSToolbarDelegate {
@@ -56,6 +57,8 @@ extension WindowController: NSToolbarDelegate {
         .doughnutTaskManager,
         .flexibleSpace,
         .doughnutSearch,
+        .doughnutTranscript,
+        .doughnutEpisodeInfo
       ]
     } else {
       return [
@@ -66,6 +69,8 @@ extension WindowController: NSToolbarDelegate {
         .doughnutTaskManager,
         .flexibleSpace,
         .doughnutSearch,
+        .doughnutTranscript,
+        .doughnutEpisodeInfo
       ]
     }
   }

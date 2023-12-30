@@ -234,6 +234,34 @@ Gw
                                         </popUpButtonCell>
                                     </popUpButton>
                                 </toolbarItem>
+                                <toolbarItem implicitItemIdentifier="C4A7F7C0-26B9-4568-9CFB-53391BE75562" explicitItemIdentifier="NSToolbarDoughnutTranscriptIdentifier" label="Transcript" paletteLabel="Transcript" image="captions.bubble" catalog="system" bordered="YES" sizingBehavior="auto" id="3Zt-gM-V3f">
+                                    <nil key="toolTip"/>
+                                    <button key="view" verticalHuggingPriority="750" id="K2o-Yt-6QG">
+                                        <rect key="frame" x="18" y="14" width="26" height="25"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="captions.bubble" catalog="system" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="xaE-4u-GN6">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                    </button>
+                                    <connections>
+                                        <action selector="toggleTranscript:" target="B8D-0N-5wS" id="PLO-Bc-fsx"/>
+                                    </connections>
+                                </toolbarItem>
+                                <toolbarItem implicitItemIdentifier="410C4F4F-592B-489D-A9B8-A75CA9889045" explicitItemIdentifier="NSToolbarDoughnutEpisodeInfoIdentifier" label="Info" paletteLabel="Info" image="info.circle" catalog="system" bordered="YES" sizingBehavior="auto" id="X2C-HS-3Up">
+                                    <nil key="toolTip"/>
+                                    <button key="view" verticalHuggingPriority="750" id="t7a-fp-D7S">
+                                        <rect key="frame" x="1" y="14" width="26" height="25"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="info.circle" catalog="system" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="wu7-2o-bWo">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                    </button>
+                                    <connections>
+                                        <action selector="toggleEpisodeInfo:" target="B8D-0N-5wS" id="0M9-OO-LwU"/>
+                                    </connections>
+                                </toolbarItem>
                                 <toolbarItem implicitItemIdentifier="2DA83EF3-3567-425B-9A15-6F3B6C17EC05" explicitItemIdentifier="NSToolbarDoughnutFilterItemIdentifier" label="Filter Unplayed" paletteLabel="Filter" image="NSActionTemplate" bordered="YES" visibilityPriority="1000" sizingBehavior="auto" id="7tO-yF-9ly">
                                     <nil key="toolTip"/>
                                     <button key="view" verticalHuggingPriority="750" id="dpN-Xz-b8k">
@@ -287,9 +315,11 @@ Gw
                         </connections>
                     </window>
                     <connections>
+                        <outlet property="episodeInfoButton" destination="t7a-fp-D7S" id="tzG-s1-KL8"/>
                         <outlet property="filterEpisodesToolbarItem" destination="7tO-yF-9ly" id="jr7-Hc-11g"/>
                         <outlet property="playerView" destination="Psv-5X-LNl" id="WFu-8c-S1d"/>
                         <outlet property="searchInputView" destination="zQC-lo-HKP" id="Hrm-SR-1bt"/>
+                        <outlet property="transcriptButton" destination="K2o-Yt-6QG" id="fdi-1V-Z6o"/>
                         <segue destination="zrU-nU-rD6" kind="relationship" relationship="window.shadowedContentViewController" id="KFV-RY-whX"/>
                     </connections>
                 </windowController>
@@ -305,6 +335,7 @@ Gw
                         <splitViewItem canCollapse="YES" holdingPriority="260" behavior="sidebar" id="oXX-Sj-7dq"/>
                         <splitViewItem holdingPriority="255" behavior="contentList" id="nb9-D8-jfe"/>
                         <splitViewItem separatorStyle="none" id="tHE-Qa-Nnj"/>
+                        <splitViewItem collapsed="YES" id="i56-Mc-Qja"/>
                     </splitViewItems>
                     <splitView key="splitView" wantsLayer="YES" dividerStyle="thin" vertical="YES" id="ucZ-EJ-Szj">
                         <rect key="frame" x="-401" y="0.0" width="851" height="440"/>
@@ -318,6 +349,7 @@ Gw
                         <segue destination="hBf-lZ-L6q" kind="relationship" relationship="splitItems" id="0dw-28-qmw"/>
                         <segue destination="GEj-8A-BQz" kind="relationship" relationship="splitItems" id="mSO-oJ-Inb"/>
                         <segue destination="7up-aR-l2X" kind="relationship" relationship="splitItems" id="rur-K8-n4x"/>
+                        <segue destination="Uel-va-0QX" kind="relationship" relationship="splitItems" id="agG-QN-uaJ"/>
                     </connections>
                 </splitViewController>
                 <customObject id="aEf-6q-K2I" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -936,6 +968,30 @@ Gw
             </objects>
             <point key="canvasLocation" x="326" y="1313"/>
         </scene>
+        <!--Transcript View Controller-->
+        <scene sceneID="LCU-hW-Qlu">
+            <objects>
+                <viewController title="Transcript View Controller" id="Uel-va-0QX" customClass="TranscriptViewController" customModule="Doughnut" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="h3v-kJ-2ez">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="t54-a0-ulb">
+                                <rect key="frame" x="166" y="189" width="78" height="16"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Transcript!!!" id="lLq-8B-IT4">
+                                    <font key="font" usesAppearanceFont="YES"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                    </view>
+                </viewController>
+                <customObject id="iSU-Ru-FVt" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="953" y="1668"/>
+        </scene>
     </scenes>
     <resources>
         <image name="FilterInactive" width="80" height="80"/>
@@ -943,5 +999,7 @@ Gw
         <image name="NSAddTemplate" width="18" height="17"/>
         <image name="NSRefreshTemplate" width="18" height="21"/>
         <image name="PlaceholderIcon" width="79" height="78.5"/>
+        <image name="captions.bubble" catalog="system" width="17" height="16"/>
+        <image name="info.circle" catalog="system" width="15" height="15"/>
     </resources>
 </document>

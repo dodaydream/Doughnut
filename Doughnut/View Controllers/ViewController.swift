@@ -18,6 +18,12 @@
 
 import Cocoa
 
+enum DetailViewState {
+    case transcript
+    case info
+    case hidden
+}
+
 final class ViewController: NSSplitViewController, LibraryDelegate {
 
   static let minimumWidthToShowWindowTitle: CGFloat = 930
@@ -46,6 +52,29 @@ final class ViewController: NSSplitViewController, LibraryDelegate {
     get {
       return splitViewItems[2].viewController as! DetailViewController
     }
+  }
+    
+  var transcriptViewController: TranscriptViewController {
+    get {
+        return splitViewItems[3].viewController as! TranscriptViewController
+    }
+  }
+    
+  func setDetailViewState (state: DetailViewState) {
+      let rightSplitViewItem = splitViewItems[2]
+      let transcriptSplitViewItem = splitViewItems[3]
+      
+      switch state {
+          case .hidden:
+              rightSplitViewItem.isCollapsed = true
+              transcriptSplitViewItem.isCollapsed = true
+          case .info:
+              rightSplitViewItem.isCollapsed = false
+              transcriptSplitViewItem.isCollapsed = true
+          case .transcript:
+              rightSplitViewItem.isCollapsed = true
+              transcriptSplitViewItem.isCollapsed = false
+      }
   }
 
   override func viewDidLoad() {
