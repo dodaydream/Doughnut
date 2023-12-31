@@ -68,12 +68,15 @@ final class ViewController: NSSplitViewController, LibraryDelegate {
           case .hidden:
               rightSplitViewItem.isCollapsed = true
               transcriptSplitViewItem.isCollapsed = true
+              transcriptViewController.setIsActive(false)
           case .info:
               rightSplitViewItem.isCollapsed = false
               transcriptSplitViewItem.isCollapsed = true
+              transcriptViewController.setIsActive(false)
           case .transcript:
               rightSplitViewItem.isCollapsed = true
               transcriptSplitViewItem.isCollapsed = false
+              transcriptViewController.setIsActive(true)
       }
   }
 

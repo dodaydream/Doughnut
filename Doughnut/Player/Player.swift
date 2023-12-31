@@ -25,6 +25,10 @@ protocol PlayerDelegate: AnyObject {
   func updatePlayback()
 }
 
+protocol TranscriptDelegate: AnyObject {
+  func onAssetsLoaded(url: URL)
+}
+
 enum PlayerLoadStatus {
   case playing
   case none
@@ -37,6 +41,7 @@ final class Player: NSObject {
   static let log = OSLog.main(category: "Player")
 
   weak var delegate: PlayerDelegate?
+  weak var transcriptDelegate: TranscriptDelegate?
 
   private(set) var loadStatus: PlayerLoadStatus = .none
   private(set) var avPlayer: AVPlayer?
@@ -122,7 +127,11 @@ final class Player: NSObject {
           "AVURLAssetHTTPHeaderFieldsKey": buildAVPlayerHTTPHeaders(),
         ]
       )
+        
     }
+      
+    transcriptDelegate?.onAssetsLoaded(url: currentPlaybackURL!)
+
 
     currentAVAsset = avAsset
     loadStatus = .loading
@@ -232,6 +241,7 @@ final class Player: NSObject {
       postNowPlayingEpisodeUpdates()
 
       avPlayer.play()
+        
       beginRoutingArbitration()
     }
   }
