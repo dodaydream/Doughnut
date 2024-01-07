@@ -161,6 +161,19 @@ class LyricsScrollView: NSScrollView {
     private var ranges: [(TimeInterval, NSRange)] = []
     private var highlightedRange: NSRange?
     
+    func addTextAttributes (range: NSRange) {
+        let font = NSFont(name: fontName, size: fontSize)!
+        let style = NSMutableParagraphStyle().with {
+            $0.alignment = .left
+        }
+        
+        textView.textStorage?.addAttributes([
+            .foregroundColor: textColor,
+            .paragraphStyle: style,
+            .font: font
+            ], range: range)
+    }
+    
     func setupTextContents(segments: [Segment]) {
 //        removePeriodicTimeObserver()
         var lrcContent = ""
@@ -187,15 +200,8 @@ class LyricsScrollView: NSScrollView {
         highlightedRange = nil
         
         let range = textView.string.fullRange
-        let font = NSFont(name: fontName, size: fontSize)!
-        let style = NSMutableParagraphStyle().with {
-            $0.alignment = .left
-        }
-        textView.textStorage?.addAttributes([
-            .foregroundColor: textColor,
-            .paragraphStyle: style,
-            .font: font
-            ], range: range)
+        addTextAttributes(range: range)
+
         needsLayout = true
         
         
@@ -226,7 +232,8 @@ class LyricsScrollView: NSScrollView {
     
     func reset() {
 //        removePeriodicTimeObserver()
-        ranges = []
+        self.textView.string = "Not Playing"
+        self.addTextAttributes(range: self.textView.string.fullRange)
     }
     
 //    private func removePeriodicTimeObserver() {
@@ -360,5 +367,4 @@ class LyricsScrollView: NSScrollView {
         let font = NSFont(name: fontName, size: fontSize)!
         textView.textStorage?.addAttribute(.font, value: font, range: range)
     }
-    
 }

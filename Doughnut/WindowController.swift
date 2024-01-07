@@ -17,6 +17,12 @@
  */
 
 import Cocoa
+import Combine
+
+extension Notification.Name {
+    static let reloadAll = Notification.Name("reloadAll")
+    static let toggleSideView = Notification.Name("toggleSideView")
+}
 
 final class WindowController: NSWindowController, NSTextFieldDelegate {
     
@@ -26,36 +32,18 @@ final class WindowController: NSWindowController, NSTextFieldDelegate {
     
     @IBOutlet weak var episodeInfoButton: NSButton!
     @IBOutlet weak var transcriptButton: NSButton!
+
+    // what is being displayed on the rhs view
+    @Published var currentRhsView: DetailViewState = DetailViewState(rawValue: Preference.integer(for: .rightViewState)) ?? .info
+    
+    var cancellables = Set<AnyCancellable>()
     
     @IBAction func toggleEpisodeInfo(_ sender: Any) {
-        
-        transcriptButton.state = .off
-        
-        if (episodeInfoButton.state == .on) {
-            viewController?.setDetailViewState(state: .info)
-            return
-        }
-        
-        toggleDetailView()
+        currentRhsView = (currentRhsView == .info) ? .hidden : .info
     }
     
     @IBAction func toggleTranscript(_ sender: Any) {
-        
-        episodeInfoButton.state = .off
-        
-        if (transcriptButton.state == .on) {
-            viewController?.setDetailViewState(state: .transcript)
-            return
-        }
-        
-        toggleDetailView()
-    }
-    
-    func toggleDetailView() {
-        if episodeInfoButton.state == .off && transcriptButton.state == .off {
-            viewController?.setDetailViewState(state: .hidden)
-            return
-        }
+        currentRhsView = (currentRhsView == .transcript) ? .hidden : .transcript
     }
     
     var viewController: ViewController? {
@@ -66,6 +54,31 @@ final class WindowController: NSWindowController, NSTextFieldDelegate {
         get {
             return self.storyboard!.instantiateController(withIdentifier: "SubscribeViewController") as! SubscribeViewController
         }
+    }
+    
+    private func handleToolbarButtonState() {
+        
+        let _ = $currentRhsView
+            .map({ value -> (NSControl.StateValue, NSControl.StateValue) in
+                switch value {
+                    case .info:
+                        return (.on, .off)
+                    case .transcript:
+                        return (.off, .on)
+                    case .hidden:
+                        return (.off, .off)
+                }
+            })
+            .sink { [weak self] (infoState, transcriptState) in
+                self?.episodeInfoButton.state = infoState
+                self?.transcriptButton.state = transcriptState
+            }.store(in: &cancellables)
+        
+        let _ = $currentRhsView
+            .sink { [weak self] value in
+                self?.viewController?.setDetailViewState(state: value)
+                Preference.set(value.rawValue, for: .rightViewState)
+            }.store(in: &cancellables)
     }
     
     override func windowDidLoad() {
@@ -88,6 +101,9 @@ final class WindowController: NSWindowController, NSTextFieldDelegate {
         )
         
         searchInputView.delegate = self
+        
+        // handle toolbar state
+        handleToolbarButtonState()
     }
     
     // Subscribed to Search input changes

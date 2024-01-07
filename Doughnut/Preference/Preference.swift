@@ -56,6 +56,9 @@ class Preference {
     static let debugMenuEnabled = Key("debugMenuEnabled")
     static let debugSQLTraceEnabled = Key("debugSQLTraceEnabled")
     static let debugDeveloperExtrasEnabled = Key("debugDeveloperExtrasEnabled")
+      
+    // State
+    static let rightViewState = Key("rightViewState")
   }
 
   enum AppIconStyle: Int {
@@ -86,6 +89,9 @@ class Preference {
     Key.markAsPlayedAfter.rawValue: 100,
 
     Key.showDockBadge.rawValue: true,
+    
+    // State
+    Key.rightViewState.rawValue: DetailViewState.info.rawValue
   ]
 
   static private let ud = UserDefaults.standard

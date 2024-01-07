@@ -19,6 +19,7 @@
 <p align="center">
   <img src="https://raw.githubusercontent.com/dyerc/Doughnut/master/screenshot.png?v=2" align="center" alt="screenshot" style="max-width:100%;" />
 </p>
+> Whisper API was added, however, it will currently run on the entire audio track before the transcription can be shown, further work are still going on
 
 Doughnut is a podcast client built using Swift. The design and user experience are inspired by Instacast for Mac which was discontinued in 2015. After experimenting with alternate user interface layouts, I kept coming back to the three column layout as most useable and practical.
 

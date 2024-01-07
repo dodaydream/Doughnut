@@ -18,16 +18,16 @@
 
 import Cocoa
 
-enum DetailViewState {
-    case transcript
-    case info
-    case hidden
+enum DetailViewState: Int {
+    case hidden = 0
+    case info = 1
+    case transcript = 2
 }
 
 final class ViewController: NSSplitViewController, LibraryDelegate {
 
   static let minimumWidthToShowWindowTitle: CGFloat = 930
-
+    
   enum Events: String {
     case PodcastSelected
 
@@ -61,6 +61,9 @@ final class ViewController: NSSplitViewController, LibraryDelegate {
   }
     
   func setDetailViewState (state: DetailViewState) {
+      
+      print("debug: now setting detail view state")
+      
       let rightSplitViewItem = splitViewItems[2]
       let transcriptSplitViewItem = splitViewItems[3]
       
@@ -81,13 +84,14 @@ final class ViewController: NSSplitViewController, LibraryDelegate {
   }
 
   override func viewDidLoad() {
-    super.viewDidLoad()
+      super.viewDidLoad()
 
-    UserDefaults.standard.addObserver(self, forKeyPath: Preference.Key.showDockBadge.rawValue, options: [], context: nil)
+      UserDefaults.standard.addObserver(self, forKeyPath: Preference.Key.showDockBadge.rawValue, options: [], context: nil)
 
-    splitView.autosaveName = "Main"
+      splitView.autosaveName = "Main"
 
-    Library.global.delegate = self
+      Library.global.delegate = self
+
   }
 
   override func viewWillAppear() {

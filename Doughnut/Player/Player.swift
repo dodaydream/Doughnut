@@ -18,6 +18,7 @@
 
 import AVFoundation
 import Cocoa
+import Combine
 import OSLog
 
 protocol PlayerDelegate: AnyObject {
@@ -55,6 +56,8 @@ final class Player: NSObject {
   private(set) var isSeeking: Bool = false
 
   private(set) var pausedAt: TimeInterval? = nil
+    
+  var loadStatusPublisher = PassthroughSubject<PlayerLoadStatus, Never>()
 
   var playedThreshold: Double {
     let prefPercentage = Preference.double(for: Preference.Key.markAsPlayedAfter)

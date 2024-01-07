@@ -10,6 +10,7 @@ import Foundation
 import AVFoundation
 import SwiftWhisper
 import AudioKit
+import Combine
 
 class TranscriptViewController: NSViewController, TranscriptDelegate {
     
@@ -19,6 +20,8 @@ class TranscriptViewController: NSViewController, TranscriptDelegate {
     private let player = Player.global
     
     private var isActive = false
+    
+    private var cancellables = Set<AnyCancellable>()
     
     public func setIsActive(_ active: Bool) {
         isActive = active
@@ -73,6 +76,11 @@ class TranscriptViewController: NSViewController, TranscriptDelegate {
         }
     }
     
+    func copyStreamFromAVAsset () {
+        let asset = player.currentAVAsset
+        
+    }
+    
     func onAssetsLoaded(url: URL) {
         
         print("start downloading file from \(url.absoluteString)")
@@ -113,12 +121,23 @@ class TranscriptViewController: NSViewController, TranscriptDelegate {
     
     override func viewDidLoad() {
         player.transcriptDelegate = self
+        
+        self.lyricsView.reset()
+        player.loadStatusPublisher.sink { [weak self] value in
+            print("load status: \(value)")
+            switch value {
+                case .none:
+                    self?.lyricsView.reset()
+                default:
+                    break
+            }
+        }.store(in: &cancellables)
     }
     
 //    override func viewDidAppear() {
 //        print("view did appear")
 //    }
-//    
+//
 //    override func viewDidDisappear() {
 //        print("view did disappear")
 //        removePeriodicTimeObserver()

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="8cc-hm-m1Z">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="22155" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="8cc-hm-m1Z">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22155"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -40,7 +40,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="779" height="486"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Efq-Q8-6xh">
+                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Efq-Q8-6xh">
                                 <rect key="frame" x="18" y="445" width="743" height="21"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Doughnut Has Crashed Unexpectedly" id="rnr-Rf-1oe">
                                     <font key="font" textStyle="title2" name=".SFNS-Regular"/>
@@ -48,7 +48,7 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Gs4-fu-8WS">
+                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Gs4-fu-8WS">
                                 <rect key="frame" x="18" y="417" width="743" height="16"/>
                                 <textFieldCell key="cell" title="To help us examine and fix this problem, click Send Crash Log and paste the following content to open an issue on GitHub." id="ESE-XB-ZG0">
                                     <font key="font" metaFont="system"/>
@@ -187,7 +187,7 @@
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="6pz-zE-k1R">
                                 <rect key="frame" x="0.0" y="0.0" width="480" height="236"/>
                                 <subviews>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2Xc-QN-jhy">
+                                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2Xc-QN-jhy">
                                         <rect key="frame" x="18" y="147" width="444" height="32"/>
                                         <textFieldCell key="cell" title="If the problem continues to persist, please try the following troubleshooting options." id="oZv-PN-5YO">
                                             <font key="font" metaFont="system"/>
@@ -195,7 +195,7 @@
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="EbZ-p9-8ZM">
+                                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="EbZ-p9-8ZM">
                                         <rect key="frame" x="18" y="195" width="128" height="21"/>
                                         <textFieldCell key="cell" lineBreakMode="clipping" title="Troubleshooting" id="ec5-Tt-sKB">
                                             <font key="font" textStyle="title2" name=".SFNS-Regular"/>
@@ -223,7 +223,7 @@
                                             <action selector="troubleshootingRelocateLibrary:" target="FN4-GX-cgf" id="gM0-85-TyV"/>
                                         </connections>
                                     </button>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="HIn-0b-WbW">
+                                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="HIn-0b-WbW">
                                         <rect key="frame" x="18" y="56" width="408" height="15"/>
                                         <textFieldCell key="cell" lineBreakMode="clipping" title="A new library will be created if no library files exist at the selected path." id="daa-9a-XZP">
                                             <font key="font" textStyle="callout" name=".SFNS-Regular"/>
